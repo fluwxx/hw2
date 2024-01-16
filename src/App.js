@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const ColorToggle = () => {
+    const [colors, setColors] = useState({ square1: 'red', square2: 'blue' });
 
-export default App;
+    const toggleColors = (square) => {
+        setColors((prevColors) => ({
+            ...prevColors,
+            [square]: prevColors[square] === 'red' ? 'blue' : 'red',
+        }));
+    };
+
+    return (
+        <div>
+            <div
+                style={{
+                    width: '100px',
+                    height: '100px',
+                    backgroundColor: colors.square1,
+                    margin: '10px',
+                    cursor: 'pointer',
+                }}
+                onClick={() => toggleColors('square1')}
+            ></div>
+            <div
+                style={{
+                    width: '100px',
+                    height: '100px',
+                    backgroundColor: colors.square2,
+                    margin: '10px',
+                    cursor: 'pointer',
+                }}
+                onClick={() => toggleColors('square2')}
+            ></div>
+        </div>
+    );
+};
+
+export default ColorToggle;
